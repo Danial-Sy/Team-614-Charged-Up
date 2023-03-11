@@ -4,7 +4,6 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
-import frc.robot.Robot;
 import frc.robot.RobotContainer;
 
 public class Intake extends CommandBase {
@@ -37,9 +36,7 @@ public class Intake extends CommandBase {
   // gets returned true when the command ends
   @Override
   public boolean isFinished() {
-    double currentTime = timer.get();
-    if ((RobotContainer.manipulator.pdh.getCurrent(Constants.INTAKE_MOTOR) >= Constants.MANIPULATOR_THRESHOLD)
-        && currentTime > 1) {
+    if (RobotContainer.tiltSubsystem.getRightHeight() <= 5) {
           SmartDashboard.putBoolean("Picked Up game piece:", true);
           return true;
     } else {
