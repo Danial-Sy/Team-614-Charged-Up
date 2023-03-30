@@ -10,7 +10,7 @@ public class LEDSubsystem extends SubsystemBase {
   private AddressableLED led;
   private AddressableLEDBuffer ledBuffer;
 
-  private final int NumLEDs = 60;
+  private final int NumLEDs = 180;
 
   private int rainbowInitialHue = 0;
 
