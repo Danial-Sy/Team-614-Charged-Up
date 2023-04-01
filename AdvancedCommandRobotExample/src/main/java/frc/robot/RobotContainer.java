@@ -2,7 +2,12 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
-import frc.robot.commands.Autos.*;
+import frc.robot.commands.Autos.BlueTopScoreGrabAuto;
+import frc.robot.commands.Autos.DoNothingAuto;
+import frc.robot.commands.Autos.RedTopScoreGrabAuto;
+import frc.robot.commands.Autos.ScoreBalance;
+import frc.robot.commands.Autos.ScoreMobility;
+import frc.robot.commands.Autos.TestAuto;
 import frc.robot.commands.PIDCommand.TiltPIDCommand;
 import frc.robot.commands.SequentialParallelCommands.GroundIntake;
 import frc.robot.commands.SequentialParallelCommands.LoadStation;
