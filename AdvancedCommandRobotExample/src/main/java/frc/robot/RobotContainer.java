@@ -5,8 +5,6 @@ import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import frc.robot.commands.Autos.BlueTopScoreGrabAuto;
 import frc.robot.commands.Autos.DoNothingAuto;
 import frc.robot.commands.Autos.RedTopScoreGrabAuto;
-import frc.robot.commands.Autos.ScoreBalance;
-import frc.robot.commands.Autos.ScoreMobility;
 import frc.robot.commands.Autos.TestAuto;
 import frc.robot.commands.PIDCommand.TiltPIDCommand;
 import frc.robot.commands.SequentialParallelCommands.GroundIntake;
@@ -48,8 +46,6 @@ public class RobotContainer {
     private final Command DoNothing = new DoNothingAuto();
     private final Command RedScoreGrabAuto = new RedTopScoreGrabAuto();
     private final Command BlueScoreGrabAuto = new BlueTopScoreGrabAuto();
-    private final Command ScoreMobility = new ScoreMobility();
-    private final Command ScoreBalance = new ScoreBalance();
 
     SendableChooser<Command> m_chooser = new SendableChooser<>();
 
@@ -59,8 +55,6 @@ public class RobotContainer {
 
         m_chooser.addOption("Blue - Score Grab", BlueScoreGrabAuto);
         m_chooser.addOption("Red - Score Grab", RedScoreGrabAuto);
-        m_chooser.addOption("Score Mobility", ScoreMobility);
-        m_chooser.addOption("Score Balance", ScoreBalance);
 
         m_chooser.addOption("--TESTAUTO--", TestAuto);
         m_chooser.setDefaultOption("Do Nothing", DoNothing);
