@@ -6,8 +6,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 public class LEDSubsystem extends SubsystemBase {
-
-  private AddressableLED led;
+  private AddressableLED [] led;
   private AddressableLEDBuffer ledBuffer;
 
   private final int NumLEDs = 180;
@@ -15,39 +14,59 @@ public class LEDSubsystem extends SubsystemBase {
   private int rainbowInitialHue = 0;
 
   public LEDSubsystem() {
-    led = new AddressableLED(Constants.ADDRESSABLE_LED_PORT);
-    ledBuffer = new AddressableLEDBuffer(NumLEDs);
-    led.setLength(ledBuffer.getLength());
-    led.setData(ledBuffer);
-    led.start();
+    led = new AddressableLED [4];
+    for(int i = 0; i < led.length; i++)
+    {
+      led[i] = new AddressableLED(i);
+      ledBuffer = new AddressableLEDBuffer(NumLEDs);
+      led[i].setLength(ledBuffer.getLength());
+      led[i].setData(ledBuffer);
+      led[i].start();
+    }
+    // ledBuffer = new AddressableLEDBuffer(NumLEDs);
+    // led.setLength(ledBuffer.getLength());
+    // led.setData(ledBuffer);
+    // led.start();
   }
 
   public void setLedColorOrange() {
     for (int i = 0; i < NumLEDs; i++) {
       ledBuffer.setRGB(i, 255, 17, 0);
     }
-    led.setData(ledBuffer);
+    for(int i = 0; i < led.length; i++)
+    {
+      led[i].setData(ledBuffer);
+    }
   }
 
   public void setLedColorGreen() {
     for (int i = 0; i < NumLEDs; i++) {
       ledBuffer.setRGB(i, 60, 255, 0);
     }
-    led.setData(ledBuffer);
+    for(int i = 0; i < led.length; i++)
+    {
+      led[i].setData(ledBuffer);
+    }
   }
 
   public void setLedColorPurple() {
     for (int i = 0; i < NumLEDs; i++) {
       ledBuffer.setRGB(i, 50, 0, 50);
     }
-    led.setData(ledBuffer);
+    for(int i = 0; i < led.length; i++)
+    {
+      led[i].setData(ledBuffer);
+    }
   }
 
   public void setLedColorYellow() {
     for (int i = 0; i < NumLEDs; i++) {
       ledBuffer.setRGB(i, 255, 95, 0);
     }
-    led.setData(ledBuffer);
+    for(int i = 0; i < led.length; i++)
+    {
+      led[i].setData(ledBuffer);
+    }
   }
 
   public void setLedColorRainbow() {
