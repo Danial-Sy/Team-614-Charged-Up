@@ -37,7 +37,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void disabledInit() {
-    RobotContainer.ledSubsystem.setLedColorOrange();
+    RobotContainer.ledSubsystem.setLedColorRainbow();
   }
 
   @Override

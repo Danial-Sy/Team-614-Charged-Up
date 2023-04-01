@@ -35,7 +35,6 @@ public final class Constants {
 
   // PWM LED Port
   public static final int ADDRESSABLE_LED_PORT_0 = 0;
-  public static final int ADDRESSABLE_LED_PORT_1 = 1;
 
   // GLOBAL STOP MOTOR
   public static final double MOTOR_ZERO_SPEED = 0.0;
