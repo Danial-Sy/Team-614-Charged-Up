@@ -9,7 +9,6 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.interfaces.Gyro;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-
 import com.kauailabs.navx.frc.AHRS;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMax.IdleMode;
@@ -34,8 +33,8 @@ public class DriveTrainSubsystem extends SubsystemBase {
 
     leaderLeftMotor.getEncoder().setPositionConversionFactor(Constants.kLinearDistanceConversionFactor);
     leaderRightMotor.getEncoder().setPositionConversionFactor(Constants.kLinearDistanceConversionFactor);
-    leaderLeftMotor.getEncoder().setVelocityConversionFactor(Constants.kLinearDistanceConversionFactor / 60);
-    leaderRightMotor.getEncoder().setVelocityConversionFactor(Constants.kLinearDistanceConversionFactor / 60);
+    leaderLeftMotor.getEncoder().setVelocityConversionFactor(Constants.kLinearDistanceConversionFactor / Constants.MINUTE_DIVISION);
+    leaderRightMotor.getEncoder().setVelocityConversionFactor(Constants.kLinearDistanceConversionFactor / Constants.MINUTE_DIVISION);
 
     leaderRightMotor.setInverted(true);
 
@@ -81,7 +80,7 @@ public class DriveTrainSubsystem extends SubsystemBase {
 
   public double getEncoderPositionAverage() {
     double positionAverage = (Math.abs(leaderLeftMotor.getEncoder().getPosition())
-        + Math.abs(leaderRightMotor.getEncoder().getPosition())) / 2.0;
+        + Math.abs(leaderRightMotor.getEncoder().getPosition())) / Constants.AVERAGE_DIVISION;
     return positionAverage;
   }
 
@@ -98,8 +97,8 @@ public class DriveTrainSubsystem extends SubsystemBase {
   }
 
   public void resetEncoderValues() {
-    leaderLeftMotor.getEncoder().setPosition(0.0);
-    leaderRightMotor.getEncoder().setPosition(0.0);
+    leaderLeftMotor.getEncoder().setPosition(Constants.ZERO_ENCODER);
+    leaderRightMotor.getEncoder().setPosition(Constants.ZERO_ENCODER);
   }
 
   public void rotateRight(double val) {
@@ -168,15 +167,15 @@ public class DriveTrainSubsystem extends SubsystemBase {
   public Gyro getGyro() {
     return navX;
   }
-  
+
   public double getPitch() {
     return navX.getPitch();
   }
-  
+
   public double getRoll() {
     return navX.getRoll();
   }
-  
+
   public double getYaw() {
     return navX.getYaw();
   }
@@ -189,5 +188,7 @@ public class DriveTrainSubsystem extends SubsystemBase {
     SmartDashboard.putNumber("Right Encoder Value Meters", getLeaderRightEncoderPosition());
     SmartDashboard.putNumber("Average Encoder Distance 2", getEncoderPositionAverage());
     SmartDashboard.putNumber("Gyro Heading", getHeading());
+    SmartDashboard.putNumber("Right Side Drivetrain", leaderRightMotor.get());
+    SmartDashboard.putNumber("Left Side Drivetrain", leaderLeftMotor.get());
   }
 }

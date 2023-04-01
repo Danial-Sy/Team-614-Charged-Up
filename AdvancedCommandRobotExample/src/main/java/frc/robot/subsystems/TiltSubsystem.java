@@ -5,6 +5,7 @@ import edu.wpi.first.wpilibj2.command.PIDSubsystem;
 import frc.robot.Constants;
 import frc.robot.RobotContainer;
 import frc.robot.subsystems.TiltSubsystem;
+
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
@@ -16,7 +17,7 @@ public class TiltSubsystem extends PIDSubsystem {
     super(
         // The controller that the command will use
         new PIDController(Constants.Pivot_kP, Constants.Pivot_kI, Constants.Pivot_kD));
-    getController().setTolerance(0.1);
+    getController().setTolerance(Constants.PID_POSITION_THRESHOLD);
     tiltLeftMotor.setSmartCurrentLimit(Constants.MOTOR_CURRENT_LIMIT);
     tiltRightMotor.setSmartCurrentLimit(Constants.MOTOR_CURRENT_LIMIT);
   }
@@ -38,29 +39,29 @@ public class TiltSubsystem extends PIDSubsystem {
   }
 
   public void resetTiltEncoders() {
-    tiltLeftMotor.getEncoder().setPosition(0);
-    tiltRightMotor.getEncoder().setPosition(0);
+    tiltLeftMotor.getEncoder().setPosition(Constants.MOTOR_ZERO_SPEED);
+    tiltRightMotor.getEncoder().setPosition(Constants.MOTOR_ZERO_SPEED);
   }
 
   public void set(double val) {
     tiltLeftMotor.set(val);
-    tiltRightMotor.set(-1 * val);
+    tiltRightMotor.set(Constants.NEGATE_NUMBER * val);
   }
 
   @Override
   protected void useOutput(double output, double setpoint) {
-    if ((getRightHeight() > 21) && (setpoint > 21)) {
-      tiltLeftMotor.set(0);
-      tiltRightMotor.set(0);
+    if ((getLeftHeight() > Constants.TILT_HYBRID_LOWER_THRESHOLD) && (setpoint > Constants.TILT_HYBRID_THRESHOLD)) {
+      tiltLeftMotor.set(Constants.MOTOR_ZERO_SPEED);
+      tiltRightMotor.set(Constants.MOTOR_ZERO_SPEED);
     } else {
-      tiltLeftMotor.set(-1 * (output + getController().calculate(getMeasurement(), setpoint)));
+      tiltLeftMotor.set(output + getController().calculate(getMeasurement(), setpoint));
       tiltRightMotor.set(output + getController().calculate(getMeasurement(), setpoint));
     }
   }
 
   @Override
   protected double getMeasurement() {
-    return RobotContainer.tiltSubsystem.getRightHeight();
+    return RobotContainer.tiltSubsystem.getLeftHeight();
   }
 
   public boolean atSetpoint() {

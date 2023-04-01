@@ -11,14 +11,14 @@ import frc.robot.commands.SimpleCommands.Intake;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
-// https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
+// https://docs.wpilib.org/ena/stable/docs/software/commandbased/convenience-features.html
 public class PchooOverCS extends SequentialCommandGroup {
   /** Creates a new PchooOverCS. */
   public PchooOverCS() {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
-    new TiltPIDCommand(Constants.TILT_PCHOO_SETPOINT).withTimeout(0.5),
-    new Intake(Constants.MANIPULATOR_SPEED_PCHOO).withTimeout(0.5));
+        new TiltPIDCommand(Constants.TILT_PCHOO_SETPOINT).withTimeout(Constants.COMMAND_TIMEOUT_5),
+        new Intake(Constants.MANIPULATOR_SPEED_PCHOO).withTimeout(Constants.COMMAND_TIMEOUT_5));
   }
 }
