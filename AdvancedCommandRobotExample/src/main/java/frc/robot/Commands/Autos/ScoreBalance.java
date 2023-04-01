@@ -18,7 +18,8 @@ public class ScoreBalance extends SequentialCommandGroup {
   public ScoreBalance() {
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
-      new Tilt(Constants.TILT_DEFAULT_SETPOINT),
-      new PathPlannerLoadEventMapCommand("Score Charge Station", EventMap.ScoreGrab()).withTimeout(Constants.AUTO_TIMEOUT));
+        new Tilt(Constants.TILT_DEFAULT_SETPOINT),
+        new PathPlannerLoadEventMapCommand("Score Charge Station", EventMap.ScoreGrab())
+            .withTimeout(Constants.AUTO_TIMEOUT));
   }
 }
