@@ -39,8 +39,10 @@ public final class Constants {
 
   // GLOBAL STOP MOTOR
   public static final double MOTOR_ZERO_SPEED = 0.0;
+  public static final double MOTOR_THREE_SPEED = 0.30;
+  public static final double MOTOR_NEGATIVE_THREE_SPEED = -0.30;
   public static final double MOTOR_REST_BACK = -0.05;
-  
+
   // GLOBAL INVERT
   public static final int GLOBAL_INVERT = -1;
 
@@ -116,6 +118,8 @@ public final class Constants {
   public static final double TILT_MID_SCORE_SETPOINT = 14.5;
   public static final double TILT_PCHOO_SETPOINT = 18;
   public static final double TILT_LOW_SETPOINT = 24;
+  public static final double TILT_HYBRID_LOWER_THRESHOLD = 21.5;
+  public static final double TILT_HYBRID_THRESHOLD = 21.0;
   public static final double TILT_UP_SETPOINT = 0.5;
   public static final double TILT_HIGH_CUBE_SETPOINT = 13;
 
@@ -123,6 +127,7 @@ public final class Constants {
   public static final double P_kP = 0.023; // 1.18
   public static final double P_kI = 0.00001; // 0.06
   public static final double P_kD = 0; // 1.95
+
   // Pivot PID Values
   public static final double Pivot_kP = 0.025; // 1.18
   public static final double Pivot_kI = 0; // 0.06
@@ -149,11 +154,44 @@ public final class Constants {
 
   // ELEVATOR MOTOR ID'S
   public static final int ELEVATOR_RIGHT_MOTOR = 17;
-  public static final int ELEVATOR_LEFT_MOTOR = 3; //3
+  public static final int ELEVATOR_LEFT_MOTOR = 3; // 3
 
   // TILT MOTOR ID'S
   public static final int TILT_RIGHT_MOTOR = 2;
   public static final int TILT_LEFT_MOTOR = 18;
+
+  // TIMEOUTS
+  public static final double AUTO_TIMEOUT = 15.0;
+  public static final double COMMAND_TIMEOUT_1 = 0.1;
+  public static final double COMMAND_TIMEOUT_2 = 0.2;
+  public static final double COMMAND_TIMEOUT_3 = 0.3;
+  public static final double COMMAND_TIMEOUT_5 = 0.5;
+  public static final double COMMAND_TIMEOUT_6 = 0.6;
+  public static final double COMMAND_TIMEOUT_7 = 0.7;
+
+  // AUTO BALANCE ANGLE THRESHOLDS
+  public static final double AUTO_BALANCE_FORWARD_ANGLE = 12.5;
+  public static final double AUTO_BALANCE_NEGATIVE_FORWARD_ANGLE = -12.5;
+  public static final double AUTO_BALANCE_REVERSE_ANGLE = -7.0;
+
+  // ENCODER RESET
+  public static final double ZERO_ENCODER = 0.0;
+
+  // PID THRESHOLDS
+  public static final double PID_POSITION_THRESHOLD = 0.1;
+
+  // COLOR ID
+  public static final int ID_0 = 0;
+  public static final int ID_1 = 1;
+  public static final int ID_2 = 2;
+  public static final int ID_3 = 3;
+
+  // DIVISIONS
+  public static final double AVERAGE_DIVISION = 2.0;
+  public static final double MINUTE_DIVISION = 60.0;
+
+  // NEGATE NUMBER
+  public static final double NEGATE_NUMBER = -1.0;
 
   public static class OperatorConstants {
   }

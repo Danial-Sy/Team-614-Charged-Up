@@ -5,7 +5,6 @@ import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.Constants;
 import frc.robot.commands.PIDCommand.TiltPIDCommand;
 import frc.robot.commands.SequentialParallelCommands.GroundIntake;
-import frc.robot.commands.SequentialParallelCommands.PchooOverCSBalance;
 import frc.robot.commands.SequentialParallelCommands.ScoreMidCone;
 
 public class EventMap {
@@ -21,24 +20,9 @@ public class EventMap {
     return ScoreGrab;
   }
 
-  public static HashMap<String, Command> ScoreRotateBalance() {
-    HashMap<String, Command> ScoreRotateBalance = new HashMap<>();
-    ScoreRotateBalance.put("intake", new GroundIntake());
-    ScoreRotateBalance.put("armup", new TiltPIDCommand(Constants.TILT_DEFAULT_SETPOINT));
-    ScoreRotateBalance.put("pchoobalance", new PchooOverCSBalance());
-    return ScoreRotateBalance;
-  }
-
   public static HashMap<String, Command> ScoreBalance() {
     HashMap<String, Command> ScoreBalance = new HashMap<>();
     ScoreBalance.put("balance", new AutoBalance());
     return ScoreBalance;
   }
-
-  public static HashMap<String, Command> Grab1() {
-    HashMap<String, Command> Grab1 = new HashMap<>();
-    Grab1.put("intake", new GroundIntake());
-    return Grab1;
-  }
-  
 }

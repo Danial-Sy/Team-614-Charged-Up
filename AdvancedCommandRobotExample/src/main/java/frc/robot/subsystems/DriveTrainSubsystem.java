@@ -33,8 +33,10 @@ public class DriveTrainSubsystem extends SubsystemBase {
 
     leaderLeftMotor.getEncoder().setPositionConversionFactor(Constants.kLinearDistanceConversionFactor);
     leaderRightMotor.getEncoder().setPositionConversionFactor(Constants.kLinearDistanceConversionFactor);
-    leaderLeftMotor.getEncoder().setVelocityConversionFactor(Constants.kLinearDistanceConversionFactor / 60);
-    leaderRightMotor.getEncoder().setVelocityConversionFactor(Constants.kLinearDistanceConversionFactor / 60);
+    leaderLeftMotor.getEncoder()
+        .setVelocityConversionFactor(Constants.kLinearDistanceConversionFactor / Constants.MINUTE_DIVISION);
+    leaderRightMotor.getEncoder()
+        .setVelocityConversionFactor(Constants.kLinearDistanceConversionFactor / Constants.MINUTE_DIVISION);
 
     leaderRightMotor.setInverted(true);
 
@@ -80,7 +82,7 @@ public class DriveTrainSubsystem extends SubsystemBase {
 
   public double getEncoderPositionAverage() {
     double positionAverage = (Math.abs(leaderLeftMotor.getEncoder().getPosition())
-        + Math.abs(leaderRightMotor.getEncoder().getPosition())) / 2.0;
+        + Math.abs(leaderRightMotor.getEncoder().getPosition())) / Constants.AVERAGE_DIVISION;
     return positionAverage;
   }
 
@@ -97,8 +99,8 @@ public class DriveTrainSubsystem extends SubsystemBase {
   }
 
   public void resetEncoderValues() {
-    leaderLeftMotor.getEncoder().setPosition(0.0);
-    leaderRightMotor.getEncoder().setPosition(0.0);
+    leaderLeftMotor.getEncoder().setPosition(Constants.ZERO_ENCODER);
+    leaderRightMotor.getEncoder().setPosition(Constants.ZERO_ENCODER);
   }
 
   public void rotateRight(double val) {

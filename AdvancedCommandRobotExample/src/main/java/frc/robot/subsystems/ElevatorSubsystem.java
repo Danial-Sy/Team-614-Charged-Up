@@ -47,12 +47,12 @@ public class ElevatorSubsystem extends SubsystemBase {
   }
 
   public void resetElevatorEncoders() {
-    elevatorLeftMotor.getEncoder().setPosition(0);
-    elevatorRightMotor.getEncoder().setPosition(0);
+    elevatorLeftMotor.getEncoder().setPosition(Constants.ZERO_ENCODER);
+    elevatorRightMotor.getEncoder().setPosition(Constants.ZERO_ENCODER);
   }
 
   public void set(double val) {
-    elevatorLeftMotor.set(-1 * val);
+    elevatorLeftMotor.set(Constants.NEGATE_NUMBER * val);
     elevatorRightMotor.set(val);
   }
 }

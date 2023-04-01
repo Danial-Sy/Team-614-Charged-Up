@@ -43,8 +43,8 @@ public class PathPlannerLoadPathCommand extends InstantCommand {
             Constants.kaVoltSecondsSquaredPerMeter),
         Constants.kDriveKinematics,
         RobotContainer.driveTrainSubsystem::getWheelSpeeds,
-        new PIDController(Constants.V_kP, 0, 0),
-        new PIDController(Constants.V_kP, 0, 0),
+        new PIDController(Constants.V_kP, Constants.V_kI, Constants.V_kD),
+        new PIDController(Constants.V_kP, Constants.V_kI, Constants.V_kD),
         RobotContainer.driveTrainSubsystem::DifferentialDriveVolts,
         RobotContainer.driveTrainSubsystem);
 

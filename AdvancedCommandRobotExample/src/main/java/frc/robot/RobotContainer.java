@@ -3,33 +3,11 @@ package frc.robot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import frc.robot.commands.resetTiltEncodersLow;
-import frc.robot.commands.Autos.Auto1;
-import frc.robot.commands.Autos.Auto10;
-import frc.robot.commands.Autos.Auto11;
-import frc.robot.commands.Autos.Auto12;
-import frc.robot.commands.Autos.Auto13;
-import frc.robot.commands.Autos.Auto14;
-import frc.robot.commands.Autos.Auto15;
-import frc.robot.commands.Autos.Auto16;
-import frc.robot.commands.Autos.Auto2;
-import frc.robot.commands.Autos.Auto3;
-import frc.robot.commands.Autos.Auto4;
-import frc.robot.commands.Autos.Auto5;
-import frc.robot.commands.Autos.Auto6;
-import frc.robot.commands.Autos.Auto7;
-import frc.robot.commands.Autos.Auto8;
-import frc.robot.commands.Autos.Auto9;
-import frc.robot.commands.Autos.BlueCSScoreGrab;
-import frc.robot.commands.Autos.BlueConeScoreCSAuto;
-import frc.robot.commands.Autos.BlueScoreRotateBalance;
 import frc.robot.commands.Autos.BlueTopScoreGrabAuto;
 import frc.robot.commands.Autos.DoNothingAuto;
-import frc.robot.commands.Autos.HighCubeScoreCSAuto;
-import frc.robot.commands.Autos.MidCubeScoreCSAuto;
-import frc.robot.commands.Autos.RedCSSCoreGrab;
-import frc.robot.commands.Autos.RedConeScoreCSAuto;
-import frc.robot.commands.Autos.RedScoreRotateBalance;
 import frc.robot.commands.Autos.RedTopScoreGrabAuto;
+import frc.robot.commands.Autos.ScoreBalance;
+import frc.robot.commands.Autos.ScoreMobility;
 import frc.robot.commands.Autos.TestAuto;
 import frc.robot.commands.PIDCommand.TiltPIDCommand;
 import frc.robot.commands.SequentialParallelCommands.GroundIntake;
@@ -67,37 +45,12 @@ public class RobotContainer {
     // LimelightSubsystem();
     public static LEDSubsystem ledSubsystem = new LEDSubsystem();
 
-    private final Command BBCMMCS = new Auto1();
-    private final Command BTCMCS = new Auto2();
-    private final Command BTCMM = new Auto3();
-    private final Command RBCMMCS = new Auto4();
-    private final Command RTCMCS = new Auto5();
-    private final Command RTCMM = new Auto6();
-    private final Command BTCONEMM = new Auto7();
-    private final Command RTCONEMM = new Auto8();
-    private final Command BBCONEMMCS = new Auto9();
-    private final Command RBCONEMMCS = new Auto10();
-    private final Command BBHCMMCS = new Auto11();
-    private final Command BTHCMCS = new Auto12();
-    private final Command BTHCMM = new Auto13();
-    private final Command RBHCMMCS = new Auto14();
-    private final Command RTHCMCS = new Auto15();
-    private final Command RTHCMM = new Auto16();
-
     private final Command TestAuto = new TestAuto();
     private final Command DoNothing = new DoNothingAuto();
-    private final Command ScoreMidCubeAuto = new ScoreMidCube();
-    private final Command ScoreHighCubeAuto = new ScoreHighCube();
     private final Command RedScoreGrabAuto = new RedTopScoreGrabAuto();
     private final Command BlueScoreGrabAuto = new BlueTopScoreGrabAuto();
-    private final Command RedScoreRotateBalance = new RedScoreRotateBalance();
-    private final Command BlueScoreRotateBalance = new BlueScoreRotateBalance();
-    private final Command BlueConeScoreCSAuto = new BlueConeScoreCSAuto();
-    private final Command HighCubeScoreCSAuto = new HighCubeScoreCSAuto();
-    private final Command RedConeScoreCSAuto = new RedConeScoreCSAuto();
-    private final Command MidCubeScoreCSAuto = new MidCubeScoreCSAuto();
-    private final Command RedCSSCoreGrab = new RedCSSCoreGrab();
-    private final Command BlueCSScoreGrab = new BlueCSScoreGrab();
+    private final Command ScoreBalance = new ScoreBalance();
+    private final Command ScoreMobility = new ScoreMobility();
 
     SendableChooser<Command> m_chooser = new SendableChooser<>();
 
@@ -105,44 +58,11 @@ public class RobotContainer {
         configureBindings();
         driveTrainSubsystem.setDefaultCommand(new ArcadeDrive());
 
-        m_chooser.addOption("---Old--- ---Single Piece Autos---", DoNothing);
+        m_chooser.addOption("Blue - Score Grab", BlueScoreGrabAuto);
+        m_chooser.addOption("Red - Score Grab", RedScoreGrabAuto);
+        m_chooser.addOption("Score Mobility", ScoreBalance);
+        m_chooser.addOption("ScoreMobility", ScoreMobility);
 
-        m_chooser.addOption("Blue - Mid Cube Over Charge Station", BBCMMCS);
-        m_chooser.addOption("Blue - Mid Cube Around Charge Station", BTCMCS);
-        m_chooser.addOption("Blue - Mid Cube Mobility", BTCMM);
-        m_chooser.addOption("Blue - High Cube Over Charge Station", BBHCMMCS);
-        m_chooser.addOption("Blue - High Cube Around Charge Station", BTHCMCS);
-        m_chooser.addOption("Blue - High Cube Mobility", BTHCMM);
-        m_chooser.addOption("Blue - Mid Cone Mobility", BTCONEMM);
-        m_chooser.addOption("Blue - Mid Cone Over Charge Station", BBCONEMMCS);
-
-        m_chooser.addOption("Red - Mid Cube Over Charge Station", RBCMMCS);
-        m_chooser.addOption("Red - Mid Cube Around Charge Station", RTCMCS);
-        m_chooser.addOption("Red - Mid Cube Mobility", RTCMM);
-        m_chooser.addOption("Red - High Cube Over Charge Station", RBHCMMCS);
-        m_chooser.addOption("Red - High Cube Around Charge Station", RTHCMCS);
-        m_chooser.addOption("Red - High Cube Mobility", RTHCMM);
-        m_chooser.addOption("Red - Mid Cone Mobility", RTCONEMM);
-        m_chooser.addOption("Red - Mid Cone Over Charge Station", RBCONEMMCS);
-
-        m_chooser.addOption("---New--- ---Double Piece Autos---", DoNothing);
-
-        m_chooser.addOption("Blue - Cube Top Score 1 Grab 1", BlueScoreGrabAuto);
-        m_chooser.addOption("Blue - Cone Score Rotate Balance", BlueScoreRotateBalance);
-        m_chooser.addOption("Blue - Cone Score Charge Station", BlueConeScoreCSAuto);
-        m_chooser.addOption("High - Cube Score Charge Station", HighCubeScoreCSAuto);
-        m_chooser.addOption("Blue - Cube Over CS Grab 1", BlueCSScoreGrab);
-
-        m_chooser.addOption("Red - Cube Top Score 1 Grab 1", RedScoreGrabAuto);
-        m_chooser.addOption("Red - Cone Score Rotate Balance", RedScoreRotateBalance);
-        m_chooser.addOption("Red - Cone Score Charge Station", RedConeScoreCSAuto);
-        m_chooser.addOption("Mid - Cube Score Charge Station", MidCubeScoreCSAuto);
-        m_chooser.addOption("Red - Cube Over CS Grab 1", RedCSSCoreGrab);
-
-        m_chooser.addOption("Score Mid Cube and do Nothing:", ScoreMidCubeAuto);
-        m_chooser.addOption("Score High Cube and do Nothing", ScoreHighCubeAuto);
-
-        m_chooser.addOption("---Testing Autos---", DoNothing);
         m_chooser.addOption("--TESTAUTO--", TestAuto);
         m_chooser.setDefaultOption("Do Nothing", DoNothing);
 
@@ -160,10 +80,14 @@ public class RobotContainer {
         m_CommandXboxController.rightTrigger().onTrue(new TiltPIDCommand(Constants.TILT_DEFAULT_SETPOINT));
         m_CommandXboxController.leftTrigger().onTrue(new PchooOverCS());
         m_CommandXboxController.povUp().whileTrue(new resetTiltEncodersLow());
-        m_CommandXboxController.button(Constants.START_BUTTON).toggleOnTrue(new SetLEDColorCommand(0)); // Sets LED's to
-                                                                                                        // purple
-        m_CommandXboxController.button(Constants.BACK_BUTTON).toggleOnTrue(new SetLEDColorCommand(1)); // Sets LED's to
-                                                                                                       // yellow
+        m_CommandXboxController.button(Constants.START_BUTTON).toggleOnTrue(new SetLEDColorCommand(Constants.ID_0)); // Sets
+                                                                                                                     // LED's
+                                                                                                                     // to
+        // purple
+        m_CommandXboxController.button(Constants.BACK_BUTTON).toggleOnTrue(new SetLEDColorCommand(Constants.ID_1)); // Sets
+                                                                                                                    // LED's
+                                                                                                                    // to
+        // yellow
 
         // // CO-DRIVER CONTROLLER BINDS
         co_CommandXboxController.button(Constants.A_BUTTON).onTrue(new ScoreHybrid());
@@ -179,10 +103,13 @@ public class RobotContainer {
         co_CommandXboxController.axisGreaterThan(5, 0.5).whileTrue(new MaxTiltDown());
         co_CommandXboxController.axisLessThan(5, -0.5).whileTrue(new MaxTiltUp());
         co_CommandXboxController.povUp().whileTrue(new resetTiltEncodersLow());
-        co_CommandXboxController.button(Constants.START_BUTTON).toggleOnTrue(new SetLEDColorCommand(0)); // Sets LED's
-                                                                                                         // to purple
-        co_CommandXboxController.button(Constants.BACK_BUTTON).toggleOnTrue(new SetLEDColorCommand(1)); // Sets LED's to
-                                                                                                        // yellow
+        co_CommandXboxController.button(Constants.START_BUTTON).toggleOnTrue(new SetLEDColorCommand(Constants.ID_0)); // Sets
+                                                                                                                      // LED's
+        // to purple
+        co_CommandXboxController.button(Constants.BACK_BUTTON).toggleOnTrue(new SetLEDColorCommand(Constants.ID_1)); // Sets
+                                                                                                                     // LED's
+                                                                                                                     // to
+        // yellow
     }
 
     public Command getAutonomousCommand() {

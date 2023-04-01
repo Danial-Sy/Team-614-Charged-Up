@@ -6,6 +6,7 @@ package frc.robot.commands.PathPlannerCommands;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Constants;
 import frc.robot.RobotContainer;
 
 public class AutoBalance extends CommandBase {
@@ -14,7 +15,7 @@ public class AutoBalance extends CommandBase {
   private double lastAngle = 0;
   private double drivePower;
   private long balanceTimeMili = 0;
-  private double ForwardMult = 1.5; // must have its own max speed
+  private double ForwardMult = 1.5;
   private double maxSpeed = 0.5;
   private double diferenceInAngle;
   double stopAngle = 10.0;
@@ -24,31 +25,24 @@ public class AutoBalance extends CommandBase {
     addRequirements(RobotContainer.driveTrainSubsystem);
   }
 
-  // Called when the command is initially scheduled.
   @Override
   public void initialize() {
   }
 
-  // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
     SmartDashboard.putNumber("AutoBalanceStopAngle", stopAngle);
 
-    // sets angle to roll: angle the balence beam can rotate.
     this.currentAngle = RobotContainer.driveTrainSubsystem.getRoll();
-    if (currentAngle > 12.5) { //6
-      RobotContainer.driveTrainSubsystem.arcadeDrive(0.3, 0);
-    } else if (currentAngle < -7) { //2
-      RobotContainer.driveTrainSubsystem.arcadeDrive(-0.3, 0);
-    } else if (currentAngle <= -12.5 && currentAngle >= -7) { //6 & 2
-      RobotContainer.driveTrainSubsystem.arcadeDrive(0.0, 0);
+    if (currentAngle > Constants.AUTO_BALANCE_FORWARD_ANGLE) {
+      RobotContainer.driveTrainSubsystem.arcadeDrive(Constants.MOTOR_THREE_SPEED, Constants.MOTOR_ZERO_SPEED);
+    } else if (currentAngle < Constants.AUTO_BALANCE_REVERSE_ANGLE) {
+      RobotContainer.driveTrainSubsystem.arcadeDrive(Constants.MOTOR_NEGATIVE_THREE_SPEED, Constants.MOTOR_ZERO_SPEED);
+    } else if (currentAngle <= Constants.AUTO_BALANCE_NEGATIVE_FORWARD_ANGLE
+        && currentAngle >= Constants.AUTO_BALANCE_REVERSE_ANGLE) {
+      RobotContainer.driveTrainSubsystem.arcadeDrive(Constants.MOTOR_ZERO_SPEED, Constants.MOTOR_ZERO_SPEED);
       RobotContainer.driveTrainSubsystem.setBreakMode();
     }
-    // m_drivetrain.arcadeDrive(0.3, 0);
-
-    // System.out.println("drivePower*FM: "+(drivePower*ForwardMult)+"angle:
-    // "+currentAngle+" ForwardMult:"+ForwardMult+" difInAngle: "+diferenceInAngle+"
-    // maxSpeed: "+maxSpeed);
     SmartDashboard.putNumber("drivePower*FM", (drivePower * ForwardMult));
     SmartDashboard.putNumber("pitch balance angle", currentAngle);
     SmartDashboard.putNumber("ForwardMult", ForwardMult);
@@ -59,12 +53,10 @@ public class AutoBalance extends CommandBase {
     this.lastAngle = currentAngle;
   }
 
-  // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
   }
 
-  // Returns true when the command should end.
   @Override
   public boolean isFinished() {
     return false;

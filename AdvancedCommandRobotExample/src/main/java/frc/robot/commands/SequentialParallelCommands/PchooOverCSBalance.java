@@ -15,7 +15,7 @@ public class PchooOverCSBalance extends SequentialCommandGroup {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
-        new Intake(Constants.MANIPULATOR_SPEED_PCHOO).withTimeout(0.5),
+        new Intake(Constants.MANIPULATOR_SPEED_PCHOO).withTimeout(Constants.COMMAND_TIMEOUT_5),
         new AutoBalance());
   }
 }
