@@ -3,10 +3,10 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
 
-public class manualPivotReset extends CommandBase {
+public class resetTiltEncodersLow extends CommandBase {
   public double tiltSpeed;
 
-  public manualPivotReset() {
+  public resetTiltEncodersLow() {
     addRequirements(RobotContainer.tiltSubsystem);
   }
 
@@ -18,7 +18,7 @@ public class manualPivotReset extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    RobotContainer.tiltSubsystem.manualEncoderReset();
+    RobotContainer.tiltSubsystem.resetTiltEncodersLow();
   }
 
   @Override

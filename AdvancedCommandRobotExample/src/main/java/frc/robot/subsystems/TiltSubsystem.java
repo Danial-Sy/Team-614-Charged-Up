@@ -43,6 +43,11 @@ public class TiltSubsystem extends PIDSubsystem {
     tiltRightMotor.getEncoder().setPosition(0);
   }
 
+  public void resetTiltEncodersLow(){
+    tiltLeftMotor.getEncoder().setPosition(Constants.TILT_LOW_SETPOINT);
+    tiltRightMotor.getEncoder().setPosition(Constants.TILT_LOW_SETPOINT);
+  }
+
   public void set(double val) {
     tiltLeftMotor.set(val);
     tiltRightMotor.set(-1 * val);
@@ -66,8 +71,5 @@ public class TiltSubsystem extends PIDSubsystem {
 
   public boolean atSetpoint() {
     return getController().atSetpoint();
-  }
-  public void manualEncoderReset(){
-    tiltLeftMotor.getEncoder().setPosition(Constants.TILT_MAX_ENCODER_VALUE);
   }
 }

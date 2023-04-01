@@ -2,7 +2,7 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
-import frc.robot.commands.manualPivotReset;
+import frc.robot.commands.resetTiltEncodersLow;
 import frc.robot.commands.Autos.Auto1;
 import frc.robot.commands.Autos.Auto10;
 import frc.robot.commands.Autos.Auto11;
@@ -160,7 +160,7 @@ public class RobotContainer {
         m_CommandXboxController.button(Constants.LEFT_BUMPER).onTrue(new GroundIntake());
         m_CommandXboxController.rightTrigger().onTrue(new TiltPIDCommand(Constants.TILT_DEFAULT_SETPOINT));
         m_CommandXboxController.leftTrigger().onTrue(new PchooOverCS());
-        m_CommandXboxController.povUp().whileTrue(new manualPivotReset());
+        m_CommandXboxController.povUp().whileTrue(new resetTiltEncodersLow());
         m_CommandXboxController.button(Constants.START_BUTTON).toggleOnTrue(new SetLEDColorCommand(0)); // Sets LED's to
                                                                                                         // purple
         m_CommandXboxController.button(Constants.BACK_BUTTON).toggleOnTrue(new SetLEDColorCommand(1)); // Sets LED's to
@@ -179,7 +179,7 @@ public class RobotContainer {
         co_CommandXboxController.axisLessThan(1, -0.5).whileTrue(new Extend());
         co_CommandXboxController.axisGreaterThan(5, 0.5).whileTrue(new MaxTiltDown());
         co_CommandXboxController.axisLessThan(5, -0.5).whileTrue(new MaxTiltUp());
-        co_CommandXboxController.povUp().whileTrue(new manualPivotReset());
+        co_CommandXboxController.povUp().whileTrue(new resetTiltEncodersLow());
         co_CommandXboxController.button(Constants.START_BUTTON).toggleOnTrue(new SetLEDColorCommand(0)); // Sets LED's
                                                                                                          // to purple
         co_CommandXboxController.button(Constants.BACK_BUTTON).toggleOnTrue(new SetLEDColorCommand(1)); // Sets LED's to
