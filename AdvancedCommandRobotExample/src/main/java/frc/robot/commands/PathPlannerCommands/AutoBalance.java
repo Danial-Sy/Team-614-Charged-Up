@@ -34,11 +34,12 @@ public class AutoBalance extends CommandBase {
     SmartDashboard.putNumber("AutoBalanceStopAngle", stopAngle);
 
     this.currentAngle = RobotContainer.driveTrainSubsystem.getRoll();
-    if (currentAngle > Constants.AUTO_BALANCE_FORWARD_ANGLE) { 
+    if (currentAngle > Constants.AUTO_BALANCE_FORWARD_ANGLE) {
       RobotContainer.driveTrainSubsystem.arcadeDrive(Constants.MOTOR_THREE_SPEED, Constants.MOTOR_ZERO_SPEED);
-    } else if (currentAngle < Constants.AUTO_BALANCE_REVERSE_ANGLE) { 
+    } else if (currentAngle < Constants.AUTO_BALANCE_REVERSE_ANGLE) {
       RobotContainer.driveTrainSubsystem.arcadeDrive(Constants.MOTOR_NEGATIVE_THREE_SPEED, Constants.MOTOR_ZERO_SPEED);
-    } else if (currentAngle <= Constants.AUTO_BALANCE_NEGATIVE_FORWARD_ANGLE && currentAngle >= Constants.AUTO_BALANCE_REVERSE_ANGLE) {
+    } else if (currentAngle <= Constants.AUTO_BALANCE_NEGATIVE_FORWARD_ANGLE
+        && currentAngle >= Constants.AUTO_BALANCE_REVERSE_ANGLE) {
       RobotContainer.driveTrainSubsystem.arcadeDrive(Constants.MOTOR_ZERO_SPEED, Constants.MOTOR_ZERO_SPEED);
       RobotContainer.driveTrainSubsystem.setBreakMode();
     }

@@ -33,8 +33,10 @@ public class DriveTrainSubsystem extends SubsystemBase {
 
     leaderLeftMotor.getEncoder().setPositionConversionFactor(Constants.kLinearDistanceConversionFactor);
     leaderRightMotor.getEncoder().setPositionConversionFactor(Constants.kLinearDistanceConversionFactor);
-    leaderLeftMotor.getEncoder().setVelocityConversionFactor(Constants.kLinearDistanceConversionFactor / Constants.MINUTE_DIVISION);
-    leaderRightMotor.getEncoder().setVelocityConversionFactor(Constants.kLinearDistanceConversionFactor / Constants.MINUTE_DIVISION);
+    leaderLeftMotor.getEncoder()
+        .setVelocityConversionFactor(Constants.kLinearDistanceConversionFactor / Constants.MINUTE_DIVISION);
+    leaderRightMotor.getEncoder()
+        .setVelocityConversionFactor(Constants.kLinearDistanceConversionFactor / Constants.MINUTE_DIVISION);
 
     leaderRightMotor.setInverted(true);
 

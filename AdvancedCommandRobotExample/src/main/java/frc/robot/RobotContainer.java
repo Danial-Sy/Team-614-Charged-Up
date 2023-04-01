@@ -73,10 +73,14 @@ public class RobotContainer {
         m_CommandXboxController.button(Constants.LEFT_BUMPER).onTrue(new GroundIntake());
         m_CommandXboxController.rightTrigger().onTrue(new TiltPIDCommand(Constants.TILT_DEFAULT_SETPOINT));
         m_CommandXboxController.leftTrigger().onTrue(new PchooOverCS());
-        m_CommandXboxController.button(Constants.START_BUTTON).toggleOnTrue(new SetLEDColorCommand(Constants.ID_0)); // Sets LED's to
-                                                                                                        // purple
-        m_CommandXboxController.button(Constants.BACK_BUTTON).toggleOnTrue(new SetLEDColorCommand(Constants.ID_1)); // Sets LED's to
-                                                                                                       // yellow
+        m_CommandXboxController.button(Constants.START_BUTTON).toggleOnTrue(new SetLEDColorCommand(Constants.ID_0)); // Sets
+                                                                                                                     // LED's
+                                                                                                                     // to
+        // purple
+        m_CommandXboxController.button(Constants.BACK_BUTTON).toggleOnTrue(new SetLEDColorCommand(Constants.ID_1)); // Sets
+                                                                                                                    // LED's
+                                                                                                                    // to
+        // yellow
 
         // // CO-DRIVER CONTROLLER BINDS
         co_CommandXboxController.button(Constants.A_BUTTON).onTrue(new ScoreHybrid());
@@ -91,10 +95,13 @@ public class RobotContainer {
         co_CommandXboxController.axisLessThan(1, -0.5).whileTrue(new Extend());
         co_CommandXboxController.axisGreaterThan(5, 0.5).whileTrue(new MaxTiltDown());
         co_CommandXboxController.axisLessThan(5, -0.5).whileTrue(new MaxTiltUp());
-        co_CommandXboxController.button(Constants.START_BUTTON).toggleOnTrue(new SetLEDColorCommand(Constants.ID_0)); // Sets LED's
-                                                                                                         // to purple
-        co_CommandXboxController.button(Constants.BACK_BUTTON).toggleOnTrue(new SetLEDColorCommand(Constants.ID_1)); // Sets LED's to
-                                                                                                        // yellow
+        co_CommandXboxController.button(Constants.START_BUTTON).toggleOnTrue(new SetLEDColorCommand(Constants.ID_0)); // Sets
+                                                                                                                      // LED's
+        // to purple
+        co_CommandXboxController.button(Constants.BACK_BUTTON).toggleOnTrue(new SetLEDColorCommand(Constants.ID_1)); // Sets
+                                                                                                                     // LED's
+                                                                                                                     // to
+        // yellow
     }
 
     public Command getAutonomousCommand() {

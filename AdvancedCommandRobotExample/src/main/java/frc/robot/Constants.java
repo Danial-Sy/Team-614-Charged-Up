@@ -41,7 +41,7 @@ public final class Constants {
   public static final double MOTOR_THREE_SPEED = 0.30;
   public static final double MOTOR_NEGATIVE_THREE_SPEED = -0.30;
   public static final double MOTOR_REST_BACK = -0.05;
-  
+
   // GLOBAL INVERT
   public static final int GLOBAL_INVERT = -1;
 
@@ -153,7 +153,7 @@ public final class Constants {
 
   // ELEVATOR MOTOR ID'S
   public static final int ELEVATOR_RIGHT_MOTOR = 17;
-  public static final int ELEVATOR_LEFT_MOTOR = 3; //3
+  public static final int ELEVATOR_LEFT_MOTOR = 3; // 3
 
   // TILT MOTOR ID'S
   public static final int TILT_RIGHT_MOTOR = 2;

@@ -9,7 +9,8 @@ import frc.robot.commands.SimpleCommands.Tilt;
 public class RedTopScoreGrabAuto extends SequentialCommandGroup {
   public RedTopScoreGrabAuto() {
     addCommands(
-      new Tilt(Constants.TILT_DEFAULT_SETPOINT),
-        new PathPlannerLoadEventMapCommand("TopRedScoreGrab", EventMap.ScoreGrab()).withTimeout(Constants.AUTO_TIMEOUT));
+        new Tilt(Constants.TILT_DEFAULT_SETPOINT),
+        new PathPlannerLoadEventMapCommand("TopRedScoreGrab", EventMap.ScoreGrab())
+            .withTimeout(Constants.AUTO_TIMEOUT));
   }
 }

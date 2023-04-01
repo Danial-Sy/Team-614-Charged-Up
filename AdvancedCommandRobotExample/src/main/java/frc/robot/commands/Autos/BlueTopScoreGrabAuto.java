@@ -9,7 +9,8 @@ import frc.robot.commands.SimpleCommands.Tilt;
 public class BlueTopScoreGrabAuto extends SequentialCommandGroup {
   public BlueTopScoreGrabAuto() {
     addCommands(
-      new Tilt(Constants.TILT_DEFAULT_SETPOINT),
-        new PathPlannerLoadEventMapCommand("TopBlueScoreGrab", EventMap.ScoreGrab()).withTimeout(Constants.AUTO_TIMEOUT));
+        new Tilt(Constants.TILT_DEFAULT_SETPOINT),
+        new PathPlannerLoadEventMapCommand("TopBlueScoreGrab", EventMap.ScoreGrab())
+            .withTimeout(Constants.AUTO_TIMEOUT));
   }
 }

@@ -37,7 +37,8 @@ public class PathPlannerLoadEventMapCommand extends InstantCommand {
         false,
         RobotContainer.driveTrainSubsystem);
 
-    //RamseteAutoBuilder autoBuilder2 = new RamseteAutoBuilder(null, null, null, null, null, null, null, null, eventMap, null)
+    // RamseteAutoBuilder autoBuilder2 = new RamseteAutoBuilder(null, null, null,
+    // null, null, null, null, null, eventMap, null)
 
     autoBuilder.fullAuto(pathGroup).schedule();
   }

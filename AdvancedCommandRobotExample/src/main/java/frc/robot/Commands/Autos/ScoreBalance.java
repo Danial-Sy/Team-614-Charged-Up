@@ -16,7 +16,6 @@ import frc.robot.commands.SimpleCommands.Tilt;
 public class ScoreBalance extends SequentialCommandGroup {
   /** Creates a new ScoreBalance. */
   public ScoreBalance() {
-    // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
       new Tilt(Constants.TILT_DEFAULT_SETPOINT),
