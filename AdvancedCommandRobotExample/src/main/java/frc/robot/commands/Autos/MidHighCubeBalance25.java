@@ -9,14 +9,13 @@ import frc.robot.Constants;
 import frc.robot.commands.PIDCommand.TiltPIDCommand;
 import frc.robot.commands.PathPlannerCommands.EventMap;
 import frc.robot.commands.PathPlannerCommands.PathPlannerLoadEventMapCommand;
-import frc.robot.commands.SimpleCommands.Tilt;
 
-public class ScoreBalance extends SequentialCommandGroup {
+public class MidHighCubeBalance25 extends SequentialCommandGroup {
 
-  public ScoreBalance() {
+  public MidHighCubeBalance25() {
     addCommands(
-        new TiltPIDCommand(Constants.TILT_DEFAULT_SETPOINT),
-        new PathPlannerLoadEventMapCommand("Score Charge Station", EventMap.ScoreBalance())
-            .withTimeout(Constants.AUTO_TIMEOUT));
+      new TiltPIDCommand(Constants.TILT_DEFAULT_SETPOINT),
+      new PathPlannerLoadEventMapCommand("MidHighCubeBalance2.5", EventMap.MidHighCubeBalance25())
+    );
   }
 }

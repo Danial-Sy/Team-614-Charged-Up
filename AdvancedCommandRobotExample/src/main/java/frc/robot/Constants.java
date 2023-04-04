@@ -192,6 +192,10 @@ public final class Constants {
   // NEGATE NUMBER
   public static final double NEGATE_NUMBER = -1.0;
 
+  // PATH CONSTRAINTS
+  public static final double AUTO_VELOCITY = 2.50;
+  public static final double AUTO_ACCELERATION = 2.25;
+
   public static class OperatorConstants {
   }
 }

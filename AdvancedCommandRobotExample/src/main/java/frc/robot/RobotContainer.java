@@ -2,14 +2,8 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
-import frc.robot.commands.resetTiltEncodersLow;
-import frc.robot.commands.Autos.BlueTopScoreGrabAuto;
-import frc.robot.commands.Autos.DoNothingAuto;
-import frc.robot.commands.Autos.RedTopScoreGrabAuto;
-import frc.robot.commands.Autos.ScoreBalance;
-import frc.robot.commands.Autos.ScoreMobility;
-import frc.robot.commands.Autos.TestAuto;
 import frc.robot.commands.PIDCommand.TiltPIDCommand;
+import frc.robot.commands.Autos.*;
 import frc.robot.commands.SequentialParallelCommands.GroundIntake;
 import frc.robot.commands.SequentialParallelCommands.LoadStation;
 import frc.robot.commands.SequentialParallelCommands.PchooOverCS;
@@ -23,6 +17,7 @@ import frc.robot.commands.SimpleCommands.MaxTiltDown;
 import frc.robot.commands.SimpleCommands.MaxTiltUp;
 import frc.robot.commands.SimpleCommands.Retract;
 import frc.robot.commands.SimpleCommands.SetLEDColorCommand;
+import frc.robot.commands.SimpleCommands.resetTiltEncodersLow;
 import frc.robot.subsystems.DriveTrainSubsystem;
 import frc.robot.subsystems.ElevatorSubsystem;
 import frc.robot.subsystems.LEDSubsystem;
@@ -45,12 +40,16 @@ public class RobotContainer {
     // LimelightSubsystem();
     public static LEDSubsystem ledSubsystem = new LEDSubsystem();
 
-    private final Command TestAuto = new TestAuto();
+    private final Command Sling3GP = new Sling3GP();
     private final Command DoNothing = new DoNothingAuto();
-    private final Command RedScoreGrabAuto = new RedTopScoreGrabAuto();
-    private final Command BlueScoreGrabAuto = new BlueTopScoreGrabAuto();
+    private final Command RedScoreGrabAuto = new RedScoreGrabAuto();
+    private final Command BlueScoreGrabAuto = new BlueScoreGrabAuto();
     private final Command ScoreBalance = new ScoreBalance();
     private final Command ScoreMobility = new ScoreMobility();
+    private final Command MidCubeConeBalance = new MidCubeConeBalance();
+    private final Command MidHighCubeBalance = new MidHighCubeBalance();
+    private final Command MidCubeConeBalance25 = new MidCubeConeBalance25();
+    private final Command MidHighCubeBalance25 = new MidHighCubeBalance25();
 
     SendableChooser<Command> m_chooser = new SendableChooser<>();
 
@@ -60,10 +59,14 @@ public class RobotContainer {
 
         m_chooser.addOption("Blue - Score Grab", BlueScoreGrabAuto);
         m_chooser.addOption("Red - Score Grab", RedScoreGrabAuto);
-        m_chooser.addOption("Score Mobility", ScoreBalance);
-        m_chooser.addOption("ScoreMobility", ScoreMobility);
+        m_chooser.addOption("Score Balance", ScoreBalance);
+        m_chooser.addOption("Score Mobility", ScoreMobility);
+        m_chooser.addOption("Mid Cube Cone Balance", MidCubeConeBalance);
+        m_chooser.addOption("Mid High Cube Balance", MidHighCubeBalance);
+        m_chooser.addOption("Mid Cube Cone Balance 2.5", MidCubeConeBalance25);
+        m_chooser.addOption("Mid High Cube Balance 2.5", MidHighCubeBalance25);
+        m_chooser.addOption("Sling3GP", Sling3GP); 
 
-        m_chooser.addOption("--TESTAUTO--", TestAuto);
         m_chooser.setDefaultOption("Do Nothing", DoNothing);
 
         SmartDashboard.putData(m_chooser);
@@ -105,11 +108,12 @@ public class RobotContainer {
         co_CommandXboxController.povUp().whileTrue(new resetTiltEncodersLow());
         co_CommandXboxController.button(Constants.START_BUTTON).toggleOnTrue(new SetLEDColorCommand(Constants.ID_0)); // Sets
                                                                                                                       // LED's
-        // to purple
+                                                                                                                      // to
+                                                                                                                      // purple
         co_CommandXboxController.button(Constants.BACK_BUTTON).toggleOnTrue(new SetLEDColorCommand(Constants.ID_1)); // Sets
                                                                                                                      // LED's
                                                                                                                      // to
-        // yellow
+                                                                                                                     // yellow
     }
 
     public Command getAutonomousCommand() {

@@ -23,7 +23,8 @@ public class PathPlannerLoadEventMapCommand extends InstantCommand {
 
   @Override
   public void initialize() {
-    List<PathPlannerTrajectory> pathGroup = PathPlanner.loadPathGroup(filename, new PathConstraints(2, 2));
+    List<PathPlannerTrajectory> pathGroup = PathPlanner.loadPathGroup(filename,
+        new PathConstraints(Constants.AUTO_VELOCITY, Constants.AUTO_ACCELERATION));
 
     HashMap<String, Command> eventMap = eventmap;
 
@@ -34,7 +35,7 @@ public class PathPlannerLoadEventMapCommand extends InstantCommand {
         Constants.kDriveKinematics,
         RobotContainer.driveTrainSubsystem::DifferentialDriveVolts,
         eventMap,
-        false,
+        true,
         RobotContainer.driveTrainSubsystem);
 
     autoBuilder.fullAuto(pathGroup).schedule();
