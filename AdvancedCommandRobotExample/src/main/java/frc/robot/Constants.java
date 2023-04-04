@@ -41,6 +41,7 @@ public final class Constants {
   public static final double MOTOR_THREE_SPEED = 0.30;
   public static final double MOTOR_NEGATIVE_THREE_SPEED = -0.30;
   public static final double MOTOR_REST_BACK = -0.05;
+  public static final double PDH_CURRENT_THRESHOLD = 10;
 
   // GLOBAL INVERT
   public static final int GLOBAL_INVERT = -1;
