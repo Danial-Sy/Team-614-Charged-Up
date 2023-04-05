@@ -3,13 +3,15 @@ package frc.robot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import frc.robot.commands.pivotEncoderResetLow;
-import frc.robot.commands.Autos.Sling3GP;
-import frc.robot.commands.Autos.Sling3GPCone;
+import frc.robot.commands.Autos.Sling2GPRed;
+import frc.robot.commands.Autos.Sling2GPBlue;
+import frc.robot.commands.Autos.Sling2GPConeRed;
 import frc.robot.commands.Autos.TEST3GPCUBES;
 import frc.robot.commands.Autos.RedScoreGrabAuto;
 import frc.robot.commands.Autos.BlueScoreGrabAuto;
 import frc.robot.commands.Autos.ScoreBalance;
 import frc.robot.commands.Autos.ScoreMobility;
+import frc.robot.commands.Autos.Sling2GPConeBlue;
 import frc.robot.commands.Autos.MidCubeConeBalance;
 import frc.robot.commands.Autos.MidHighCubeBalance;
 import frc.robot.commands.Autos.MidCubeConeBalance25;
@@ -51,8 +53,10 @@ public class RobotContainer {
     // LimelightSubsystem();
     public static LEDSubsystem ledSubsystem = new LEDSubsystem();
 
-    private final Command Sling3GP = new Sling3GP();
-    private final Command Sling3GPCone = new Sling3GPCone();
+    private final Command Sling2GPRed = new Sling2GPRed();
+    private final Command Sling2GPBlue = new Sling2GPBlue();
+    private final Command Sling2GPConeRed = new Sling2GPConeRed();
+    private final Command Sling2GPConeBlue = new Sling2GPConeBlue();
     private final Command TEST3GPCUBES = new TEST3GPCUBES();
     private final Command DoNothing = new DoNothingAuto();
     private final Command RedScoreGrabAuto = new RedScoreGrabAuto();
@@ -78,8 +82,10 @@ public class RobotContainer {
         m_chooser.addOption("Mid High Cube Balance", MidHighCubeBalance);
         m_chooser.addOption("Mid Cube Cone Balance 2.5", MidCubeConeBalance25);
         m_chooser.addOption("Mid High Cube Balance 2.5", MidHighCubeBalance25);
-        m_chooser.addOption("Sling3GP", Sling3GP); 
-        m_chooser.addOption("Sling3GPCone", Sling3GPCone); 
+        m_chooser.addOption("Sling2GPRed", Sling2GPRed); 
+        m_chooser.addOption("Sling2GPBlue", Sling2GPBlue);
+        m_chooser.addOption("Sling2GPConeBlue", Sling2GPConeBlue);  
+        m_chooser.addOption("Sling2GPConeRed", Sling2GPConeRed); 
         m_chooser.addOption("Test3GPCubes", TEST3GPCUBES);
 
         m_chooser.setDefaultOption("Do Nothing", DoNothing);
@@ -98,9 +104,9 @@ public class RobotContainer {
         m_CommandXboxController.rightTrigger().onTrue(new TiltPIDCommand(Constants.TILT_DEFAULT_SETPOINT));
         m_CommandXboxController.leftTrigger().onTrue(new PchooOverCS());
         m_CommandXboxController.povUp().whileTrue(new pivotEncoderResetLow());
-        m_CommandXboxController.button(Constants.START_BUTTON).onTrue(new SetLEDColorCommand(0)); // Sets LED's to
+        m_CommandXboxController.button(Constants.START_BUTTON).whileTrue(new SetLEDColorCommand(0)); // Sets LED's to
                                                                                                         // purple
-        m_CommandXboxController.button(Constants.BACK_BUTTON).onTrue(new SetLEDColorCommand(1)); // Sets LED's to
+        m_CommandXboxController.button(Constants.BACK_BUTTON).whileTrue(new SetLEDColorCommand(1)); // Sets LED's to
                                                                                                        // yellow
 
         // // CO-DRIVER CONTROLLER BINDS
@@ -117,9 +123,9 @@ public class RobotContainer {
         co_CommandXboxController.axisGreaterThan(5, 0.5).whileTrue(new MaxTiltDown());
         co_CommandXboxController.axisLessThan(5, -0.5).whileTrue(new MaxTiltUp());
         co_CommandXboxController.povUp().whileTrue(new pivotEncoderResetLow());
-        co_CommandXboxController.button(Constants.START_BUTTON).toggleOnTrue(new SetLEDColorCommand(0)); // Sets LED's
+        co_CommandXboxController.button(Constants.START_BUTTON).whileTrue(new SetLEDColorCommand(0)); // Sets LED's
                                                                                                          // to purple
-        co_CommandXboxController.button(Constants.BACK_BUTTON).toggleOnTrue(new SetLEDColorCommand(1)); // Sets LED's to
+        co_CommandXboxController.button(Constants.BACK_BUTTON).whileTrue(new SetLEDColorCommand(1)); // Sets LED's to
                                                                                                         // yellow
     }
 
