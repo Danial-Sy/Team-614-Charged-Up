@@ -5,6 +5,7 @@ import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import frc.robot.commands.pivotEncoderResetLow;
 import frc.robot.commands.Autos.Sling3GP;
 import frc.robot.commands.Autos.Sling3GPCone;
+import frc.robot.commands.Autos.TEST3GPCUBES;
 import frc.robot.commands.Autos.RedScoreGrabAuto;
 import frc.robot.commands.Autos.BlueScoreGrabAuto;
 import frc.robot.commands.Autos.ScoreBalance;
@@ -52,6 +53,7 @@ public class RobotContainer {
 
     private final Command Sling3GP = new Sling3GP();
     private final Command Sling3GPCone = new Sling3GPCone();
+    private final Command TEST3GPCUBES = new TEST3GPCUBES();
     private final Command DoNothing = new DoNothingAuto();
     private final Command RedScoreGrabAuto = new RedScoreGrabAuto();
     private final Command BlueScoreGrabAuto = new BlueScoreGrabAuto();
@@ -78,6 +80,7 @@ public class RobotContainer {
         m_chooser.addOption("Mid High Cube Balance 2.5", MidHighCubeBalance25);
         m_chooser.addOption("Sling3GP", Sling3GP); 
         m_chooser.addOption("Sling3GPCone", Sling3GPCone); 
+        m_chooser.addOption("Test3GPCubes", TEST3GPCUBES);
 
         m_chooser.setDefaultOption("Do Nothing", DoNothing);
 

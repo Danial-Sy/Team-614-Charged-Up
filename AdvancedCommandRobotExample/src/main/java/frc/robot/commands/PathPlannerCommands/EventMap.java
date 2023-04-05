@@ -85,4 +85,15 @@ public class EventMap {
     Sling3GPCone.put("scoremid", new ScoreMidConeAuto());
     return Sling3GPCone;
   }
+
+  public static HashMap<String, Command> TEST3GPCUBES() {
+    HashMap<String, Command> TEST3GPCUBES = new HashMap<>();
+    TEST3GPCUBES.put("intake", new GroundIntake());
+    TEST3GPCUBES.put("armup", new TiltPIDCommand(Constants.TILT_MID_SCORE_SETPOINT));
+    TEST3GPCUBES.put("midcube", new ScoreMidCubeAuto());
+    TEST3GPCUBES.put("intake1", new GroundIntake());
+    TEST3GPCUBES.put("armup1", new TiltPIDCommand(Constants.TILT_MID_SCORE_SETPOINT));
+    TEST3GPCUBES.put("scorelow", new ScoreHybrid());
+    return TEST3GPCUBES;
+  }
 }
