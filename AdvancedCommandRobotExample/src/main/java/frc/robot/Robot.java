@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import frc.robot.commands.SimpleCommands.Intake;
 import frc.robot.subsystems.DriveTrainSubsystem;
 
 public class Robot extends TimedRobot {
@@ -26,22 +27,19 @@ public class Robot extends TimedRobot {
     CommandScheduler.getInstance().run();
     SmartDashboard.putNumber("Tilt Right Encoder Value", RobotContainer.tiltSubsystem.getRightHeight());
     SmartDashboard.putNumber("Tilt Left Encoder Value", RobotContainer.tiltSubsystem.getLeftHeight());
-    SmartDashboard.putNumber("Pitch Angle Value:", RobotContainer.driveTrainSubsystem.getPitch());
-    SmartDashboard.putNumber("Roll Angle Value:", RobotContainer.driveTrainSubsystem.getRoll());
-    SmartDashboard.putNumber("Current elevator left motor tick position:",
-        RobotContainer.elevatorSubsystem.getLeftHeight());
-    SmartDashboard.putNumber("Current elevator right motor tick position:",
-        RobotContainer.elevatorSubsystem.getRightHeight());
-    RobotContainer.ledSubsystem.setLedColorOrange();
-  }
+    SmartDashboard.putNumber("Manipulator Velocity:", RobotContainer.manipulator.getEncoderVelocity());
+    SmartDashboard.putNumber("Manipulator Count:", RobotContainer.manipulator.count);
+    }
 
   @Override
   public void disabledInit() {
-    RobotContainer.ledSubsystem.setLedColorRainbow();
+    Intake.commandActivated = false;
+    RobotContainer.manipulator.count = 0;
   }
 
   @Override
   public void disabledPeriodic() {
+    RobotContainer.ledSubsystem.setLedColorOrange();
   }
 
   @Override
@@ -50,6 +48,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void autonomousInit() {
+    RobotContainer.ledSubsystem.setLedColorOrange();
     DriveTrainSubsystem.zeroHeading();
 
     RobotContainer.driveTrainSubsystem.navX.reset();
@@ -78,11 +77,12 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
-
+    RobotContainer.ledSubsystem.setLedColorOrange();
   }
 
   @Override
   public void teleopPeriodic() {
+    
   }
 
   @Override

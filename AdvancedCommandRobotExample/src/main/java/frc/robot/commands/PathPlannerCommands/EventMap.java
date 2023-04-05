@@ -9,6 +9,7 @@ import frc.robot.commands.SequentialParallelCommands.GroundIntake;
 import frc.robot.commands.SequentialParallelCommands.PchooOverCS;
 import frc.robot.commands.SequentialParallelCommands.ScoreHybrid;
 import frc.robot.commands.SequentialParallelCommands.ScoreMidCone;
+import frc.robot.commands.SequentialParallelCommands.ScoreMidConeAuto;
 import frc.robot.commands.SequentialParallelCommands.ScoreMidCube;
 import frc.robot.commands.SequentialParallelCommands.ScoreMidCubeAuto;
 
@@ -71,13 +72,17 @@ public class EventMap {
 
   public static HashMap<String, Command> Sling3GP() {
     HashMap<String, Command> Sling3GP = new HashMap<>();
-    Sling3GP.put("stow", new PrintCommand(""));
     Sling3GP.put("intake", new GroundIntake());
     Sling3GP.put("armup", new TiltPIDCommand(Constants.TILT_MID_SCORE_SETPOINT));
     Sling3GP.put("scoremid", new ScoreMidCubeAuto());
-    Sling3GP.put("intake1", new GroundIntake());
-    Sling3GP.put("armup1", new TiltPIDCommand(Constants.TILT_MID_SCORE_SETPOINT));
-    Sling3GP.put("scorelow", new ScoreHybrid());
-    return Sling3GP();
+    return Sling3GP;
+  }
+
+  public static HashMap<String, Command> Sling3GPCone() {
+    HashMap<String, Command> Sling3GPCone = new HashMap<>();
+    Sling3GPCone.put("intake", new GroundIntake());
+    Sling3GPCone.put("armup", new TiltPIDCommand(Constants.TILT_MID_SCORE_SETPOINT));
+    Sling3GPCone.put("scoremid", new ScoreMidConeAuto());
+    return Sling3GPCone;
   }
 }

@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.Constants;
 import frc.robot.commands.PIDCommand.TiltPIDCommand;
 import frc.robot.commands.SimpleCommands.Intake;
+import frc.robot.commands.SimpleCommands.SetLEDColorCommand;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
@@ -18,7 +19,8 @@ public class ScoreMidCubeAuto extends SequentialCommandGroup {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
-        new TiltPIDCommand(Constants.TILT_MID_SCORE_SETPOINT).withTimeout(Constants.COMMAND_TIMEOUT_5),
-        new Intake(Constants.MANIPULATOR_SPEED_BLOOP).withTimeout(Constants.COMMAND_TIMEOUT_2));
+      new TiltPIDCommand(Constants.TILT_MID_SCORE_SETPOINT).withTimeout(0.5),
+      new Intake(Constants.MANIPULATOR_SPEED_BLEH).withTimeout(0.4),
+      new SetLEDColorCommand(3));
   }
 }

@@ -10,6 +10,7 @@ import frc.robot.commands.PIDCommand.TiltPIDCommand;
 import frc.robot.commands.SimpleCommands.Extend;
 import frc.robot.commands.SimpleCommands.Intake;
 import frc.robot.commands.SimpleCommands.Retract;
+import frc.robot.commands.SimpleCommands.SetLEDColorCommand;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
@@ -18,10 +19,11 @@ public class ScoreHighCube extends SequentialCommandGroup {
   /** Creates a new ScoreHighCube. */
   public ScoreHighCube() {
     addCommands(
-        new TiltPIDCommand(Constants.TILT_LOAD_STATION_SETPOINT).withTimeout(Constants.COMMAND_TIMEOUT_5),
-        new Extend().withTimeout(Constants.COMMAND_TIMEOUT_5),
-        new Intake(Constants.MANIPULATOR_SPEED_BLEH).withTimeout(Constants.COMMAND_TIMEOUT_5),
-        new Retract().withTimeout(Constants.COMMAND_TIMEOUT_5),
-        new TiltPIDCommand(Constants.TILT_DEFAULT_SETPOINT).withTimeout(Constants.COMMAND_TIMEOUT_5));
+        new TiltPIDCommand(Constants.TILT_LOAD_STATION_SETPOINT).withTimeout(0.5),
+        new Extend().withTimeout(0.5),
+        new Intake(Constants.MANIPULATOR_SPEED_BLOOP).withTimeout(0.3),
+        new Retract().withTimeout(0.5),
+        new TiltPIDCommand(Constants.TILT_DEFAULT_SETPOINT).withTimeout(0.5),
+        new SetLEDColorCommand(3));
   }
 }

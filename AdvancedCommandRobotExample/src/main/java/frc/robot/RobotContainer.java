@@ -2,8 +2,19 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
+import frc.robot.commands.pivotEncoderResetLow;
+import frc.robot.commands.Autos.Sling3GP;
+import frc.robot.commands.Autos.Sling3GPCone;
+import frc.robot.commands.Autos.RedScoreGrabAuto;
+import frc.robot.commands.Autos.BlueScoreGrabAuto;
+import frc.robot.commands.Autos.ScoreBalance;
+import frc.robot.commands.Autos.ScoreMobility;
+import frc.robot.commands.Autos.MidCubeConeBalance;
+import frc.robot.commands.Autos.MidHighCubeBalance;
+import frc.robot.commands.Autos.MidCubeConeBalance25;
+import frc.robot.commands.Autos.MidHighCubeBalance25;
+import frc.robot.commands.Autos.DoNothingAuto;
 import frc.robot.commands.PIDCommand.TiltPIDCommand;
-import frc.robot.commands.Autos.*;
 import frc.robot.commands.SequentialParallelCommands.GroundIntake;
 import frc.robot.commands.SequentialParallelCommands.LoadStation;
 import frc.robot.commands.SequentialParallelCommands.PchooOverCS;
@@ -17,7 +28,6 @@ import frc.robot.commands.SimpleCommands.MaxTiltDown;
 import frc.robot.commands.SimpleCommands.MaxTiltUp;
 import frc.robot.commands.SimpleCommands.Retract;
 import frc.robot.commands.SimpleCommands.SetLEDColorCommand;
-import frc.robot.commands.SimpleCommands.resetTiltEncodersLow;
 import frc.robot.subsystems.DriveTrainSubsystem;
 import frc.robot.subsystems.ElevatorSubsystem;
 import frc.robot.subsystems.LEDSubsystem;
@@ -41,6 +51,7 @@ public class RobotContainer {
     public static LEDSubsystem ledSubsystem = new LEDSubsystem();
 
     private final Command Sling3GP = new Sling3GP();
+    private final Command Sling3GPCone = new Sling3GPCone();
     private final Command DoNothing = new DoNothingAuto();
     private final Command RedScoreGrabAuto = new RedScoreGrabAuto();
     private final Command BlueScoreGrabAuto = new BlueScoreGrabAuto();
@@ -66,6 +77,7 @@ public class RobotContainer {
         m_chooser.addOption("Mid Cube Cone Balance 2.5", MidCubeConeBalance25);
         m_chooser.addOption("Mid High Cube Balance 2.5", MidHighCubeBalance25);
         m_chooser.addOption("Sling3GP", Sling3GP); 
+        m_chooser.addOption("Sling3GPCone", Sling3GPCone); 
 
         m_chooser.setDefaultOption("Do Nothing", DoNothing);
 
@@ -82,15 +94,11 @@ public class RobotContainer {
         m_CommandXboxController.button(Constants.LEFT_BUMPER).onTrue(new GroundIntake());
         m_CommandXboxController.rightTrigger().onTrue(new TiltPIDCommand(Constants.TILT_DEFAULT_SETPOINT));
         m_CommandXboxController.leftTrigger().onTrue(new PchooOverCS());
-        m_CommandXboxController.povUp().whileTrue(new resetTiltEncodersLow());
-        m_CommandXboxController.button(Constants.START_BUTTON).toggleOnTrue(new SetLEDColorCommand(Constants.ID_0)); // Sets
-                                                                                                                     // LED's
-                                                                                                                     // to
-        // purple
-        m_CommandXboxController.button(Constants.BACK_BUTTON).toggleOnTrue(new SetLEDColorCommand(Constants.ID_1)); // Sets
-                                                                                                                    // LED's
-                                                                                                                    // to
-        // yellow
+        m_CommandXboxController.povUp().whileTrue(new pivotEncoderResetLow());
+        m_CommandXboxController.button(Constants.START_BUTTON).onTrue(new SetLEDColorCommand(0)); // Sets LED's to
+                                                                                                        // purple
+        m_CommandXboxController.button(Constants.BACK_BUTTON).onTrue(new SetLEDColorCommand(1)); // Sets LED's to
+                                                                                                       // yellow
 
         // // CO-DRIVER CONTROLLER BINDS
         co_CommandXboxController.button(Constants.A_BUTTON).onTrue(new ScoreHybrid());
@@ -105,15 +113,11 @@ public class RobotContainer {
         co_CommandXboxController.axisLessThan(1, -0.5).whileTrue(new Extend());
         co_CommandXboxController.axisGreaterThan(5, 0.5).whileTrue(new MaxTiltDown());
         co_CommandXboxController.axisLessThan(5, -0.5).whileTrue(new MaxTiltUp());
-        co_CommandXboxController.povUp().whileTrue(new resetTiltEncodersLow());
-        co_CommandXboxController.button(Constants.START_BUTTON).toggleOnTrue(new SetLEDColorCommand(Constants.ID_0)); // Sets
-                                                                                                                      // LED's
-                                                                                                                      // to
-                                                                                                                      // purple
-        co_CommandXboxController.button(Constants.BACK_BUTTON).toggleOnTrue(new SetLEDColorCommand(Constants.ID_1)); // Sets
-                                                                                                                     // LED's
-                                                                                                                     // to
-                                                                                                                     // yellow
+        co_CommandXboxController.povUp().whileTrue(new pivotEncoderResetLow());
+        co_CommandXboxController.button(Constants.START_BUTTON).toggleOnTrue(new SetLEDColorCommand(0)); // Sets LED's
+                                                                                                         // to purple
+        co_CommandXboxController.button(Constants.BACK_BUTTON).toggleOnTrue(new SetLEDColorCommand(1)); // Sets LED's to
+                                                                                                        // yellow
     }
 
     public Command getAutonomousCommand() {

@@ -9,6 +9,7 @@ import frc.robot.RobotContainer;
 public class Intake extends CommandBase {
   public double intakeSpeed;
   public Timer timer;
+  public static boolean commandActivated = false;
   public Intake(double intakespeed) {
     addRequirements(RobotContainer.manipulator);
     intakeSpeed = intakespeed;
@@ -17,8 +18,7 @@ public class Intake extends CommandBase {
 
   @Override
   public void initialize() {
-    timer.reset();
-    timer.start();
+      commandActivated = true;
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -36,16 +36,6 @@ public class Intake extends CommandBase {
   // gets returned true when the command ends
   @Override
   public boolean isFinished() {
-    double currentTime = timer.get();
-    if ((RobotContainer.manipulator.pdh.getCurrent(Constants.INTAKE_MOTOR) >= Constants.MANIPULATOR_THRESHOLD)
-        && currentTime > 1) {
-          SmartDashboard.putBoolean("Picked Up game piece:", true);
-          return true;
-    } else {
-      SmartDashboard.putBoolean("Picked Up game piece:", false);
-    }
-    SmartDashboard.putNumber("Current Outputted by PDH:",
-    RobotContainer.manipulator.pdh.getCurrent(Constants.INTAKE_MOTOR));
     return false;
   }
 }

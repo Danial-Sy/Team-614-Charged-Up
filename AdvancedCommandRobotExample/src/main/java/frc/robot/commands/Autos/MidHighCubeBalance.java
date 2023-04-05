@@ -5,7 +5,6 @@ import frc.robot.Constants;
 import frc.robot.commands.PIDCommand.TiltPIDCommand;
 import frc.robot.commands.PathPlannerCommands.EventMap;
 import frc.robot.commands.PathPlannerCommands.PathPlannerLoadEventMapCommand;
-import frc.robot.commands.SimpleCommands.Tilt;
 
 public class MidHighCubeBalance extends SequentialCommandGroup {
 

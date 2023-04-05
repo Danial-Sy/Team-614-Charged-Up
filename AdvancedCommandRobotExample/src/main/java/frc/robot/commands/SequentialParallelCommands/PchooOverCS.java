@@ -8,6 +8,8 @@ import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.Constants;
 import frc.robot.commands.PIDCommand.TiltPIDCommand;
 import frc.robot.commands.SimpleCommands.Intake;
+import frc.robot.commands.SimpleCommands.SetLEDColorCommand;
+import frc.robot.subsystems.LEDSubsystem;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
@@ -18,7 +20,8 @@ public class PchooOverCS extends SequentialCommandGroup {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
-        new TiltPIDCommand(Constants.TILT_PCHOO_SETPOINT).withTimeout(Constants.COMMAND_TIMEOUT_5),
-        new Intake(Constants.MANIPULATOR_SPEED_PCHOO).withTimeout(Constants.COMMAND_TIMEOUT_5));
+        new TiltPIDCommand(Constants.TILT_PCHOO_SETPOINT).withTimeout(0.5),
+        new Intake(Constants.MANIPULATOR_SPEED_PCHOO).withTimeout(0.5),
+        new SetLEDColorCommand(3));
   }
 }

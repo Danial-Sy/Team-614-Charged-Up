@@ -6,15 +6,16 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 public class LEDSubsystem extends SubsystemBase {
+
   private AddressableLED led;
   private AddressableLEDBuffer ledBuffer;
 
-  private final int NumLEDs = 180;
+  private final int NumLEDs = 50;
 
   private int rainbowInitialHue = 0;
 
   public LEDSubsystem() {
-    led = new AddressableLED(Constants.ADDRESSABLE_LED_PORT_0); // "Comment a four next to it" - Quote from Skadaris Ronis
+    led = new AddressableLED(Constants.ADDRESSABLE_LED_PORT);
     ledBuffer = new AddressableLEDBuffer(NumLEDs);
     led.setLength(ledBuffer.getLength());
     led.setData(ledBuffer);
@@ -25,28 +26,28 @@ public class LEDSubsystem extends SubsystemBase {
     for (int i = 0; i < NumLEDs; i++) {
       ledBuffer.setRGB(i, 255, 17, 0);
     }
-      led.setData(ledBuffer);
+    led.setData(ledBuffer);
   }
 
   public void setLedColorGreen() {
     for (int i = 0; i < NumLEDs; i++) {
       ledBuffer.setRGB(i, 60, 255, 0);
     }
-      led.setData(ledBuffer);
+    led.setData(ledBuffer);
   }
 
   public void setLedColorPurple() {
     for (int i = 0; i < NumLEDs; i++) {
       ledBuffer.setRGB(i, 50, 0, 50);
     }
-      led.setData(ledBuffer);
+    led.setData(ledBuffer);
   }
 
   public void setLedColorYellow() {
     for (int i = 0; i < NumLEDs; i++) {
       ledBuffer.setRGB(i, 255, 95, 0);
     }
-      led.setData(ledBuffer);
+    led.setData(ledBuffer);
   }
 
   public void setLedColorRainbow() {
@@ -62,5 +63,6 @@ public class LEDSubsystem extends SubsystemBase {
     rainbowInitialHue += 3;
     // Check bounds
     rainbowInitialHue %= 180;
+    led.setData(ledBuffer);
   }
 }

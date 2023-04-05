@@ -17,7 +17,7 @@ public class TiltSubsystem extends PIDSubsystem {
     super(
         // The controller that the command will use
         new PIDController(Constants.Pivot_kP, Constants.Pivot_kI, Constants.Pivot_kD));
-    getController().setTolerance(Constants.PID_POSITION_THRESHOLD);
+    getController().setTolerance(0.1);
     tiltLeftMotor.setSmartCurrentLimit(Constants.MOTOR_CURRENT_LIMIT);
     tiltRightMotor.setSmartCurrentLimit(Constants.MOTOR_CURRENT_LIMIT);
   }
@@ -39,25 +39,25 @@ public class TiltSubsystem extends PIDSubsystem {
   }
 
   public void resetTiltEncoders() {
-    tiltLeftMotor.getEncoder().setPosition(Constants.MOTOR_ZERO_SPEED);
-    tiltRightMotor.getEncoder().setPosition(Constants.MOTOR_ZERO_SPEED);
+    tiltLeftMotor.getEncoder().setPosition(0);
+    tiltRightMotor.getEncoder().setPosition(0);
   }
 
   public void resetTiltEncodersLow(){
     tiltLeftMotor.getEncoder().setPosition(Constants.TILT_LOW_SETPOINT);
     tiltRightMotor.getEncoder().setPosition(Constants.TILT_LOW_SETPOINT);
   }
-
+  
   public void set(double val) {
     tiltLeftMotor.set(val);
-    tiltRightMotor.set(Constants.NEGATE_NUMBER * val);
+    tiltRightMotor.set(-1 * val);
   }
 
   @Override
   protected void useOutput(double output, double setpoint) {
-    if ((getLeftHeight() > Constants.TILT_HYBRID_LOWER_THRESHOLD) && (setpoint > Constants.TILT_HYBRID_THRESHOLD)) {
-      tiltLeftMotor.set(Constants.MOTOR_ZERO_SPEED);
-      tiltRightMotor.set(Constants.MOTOR_ZERO_SPEED);
+    if ((getLeftHeight() > 21.5) && (setpoint > 21)) {
+      tiltLeftMotor.set(0);
+      tiltRightMotor.set(0);
     } else {
       tiltLeftMotor.set(output + getController().calculate(getMeasurement(), setpoint));
       tiltRightMotor.set(output + getController().calculate(getMeasurement(), setpoint));

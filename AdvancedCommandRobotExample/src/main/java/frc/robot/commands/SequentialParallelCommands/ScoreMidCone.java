@@ -5,15 +5,17 @@ import frc.robot.Constants;
 import frc.robot.commands.PIDCommand.TiltPIDCommand;
 import frc.robot.commands.SimpleCommands.Extend;
 import frc.robot.commands.SimpleCommands.Retract;
+import frc.robot.commands.SimpleCommands.SetLEDColorCommand;
 
 public class ScoreMidCone extends SequentialCommandGroup {
 
   public ScoreMidCone() {
     addCommands(
-        new TiltPIDCommand(Constants.TILT_LOAD_STATION_SETPOINT).withTimeout(Constants.COMMAND_TIMEOUT_1),
-        new Extend().withTimeout(Constants.COMMAND_TIMEOUT_6),
-        new TiltPIDCommand(Constants.TILT_MID_SCORE_SETPOINT).withTimeout(Constants.COMMAND_TIMEOUT_5),
-        new Retract().withTimeout(Constants.COMMAND_TIMEOUT_5),
-        new TiltPIDCommand(Constants.TILT_DEFAULT_SETPOINT).withTimeout(Constants.COMMAND_TIMEOUT_5));
+        new TiltPIDCommand(Constants.TILT_LOAD_STATION_SETPOINT).withTimeout(0.1),
+        new Extend().withTimeout(0.6),
+        new TiltPIDCommand(Constants.TILT_MID_SCORE_SETPOINT).withTimeout(0.5),
+        new Retract().withTimeout(0.5),
+        new TiltPIDCommand(Constants.TILT_DEFAULT_SETPOINT).withTimeout(0.5),
+        new SetLEDColorCommand(3));
   }
 }

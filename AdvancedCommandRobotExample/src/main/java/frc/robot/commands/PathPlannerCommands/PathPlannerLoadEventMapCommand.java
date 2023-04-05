@@ -23,8 +23,7 @@ public class PathPlannerLoadEventMapCommand extends InstantCommand {
 
   @Override
   public void initialize() {
-    List<PathPlannerTrajectory> pathGroup = PathPlanner.loadPathGroup(filename,
-        new PathConstraints(Constants.AUTO_VELOCITY, Constants.AUTO_ACCELERATION));
+    List<PathPlannerTrajectory> pathGroup = PathPlanner.loadPathGroup(filename, new PathConstraints(2, 2));
 
     HashMap<String, Command> eventMap = eventmap;
 
@@ -35,8 +34,10 @@ public class PathPlannerLoadEventMapCommand extends InstantCommand {
         Constants.kDriveKinematics,
         RobotContainer.driveTrainSubsystem::DifferentialDriveVolts,
         eventMap,
-        true,
+        false,
         RobotContainer.driveTrainSubsystem);
+
+    //RamseteAutoBuilder autoBuilder2 = new RamseteAutoBuilder(null, null, null, null, null, null, null, null, eventMap, null)
 
     autoBuilder.fullAuto(pathGroup).schedule();
   }
